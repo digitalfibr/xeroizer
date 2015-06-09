@@ -3,7 +3,7 @@ require 'xeroizer/models/attachment'
 module Xeroizer
   module Record
     class BankTransferModel < BaseModel
-      set_permissions :read
+      set_permissions :read, :write
 
       include AttachmentModel::Extensions
     end
