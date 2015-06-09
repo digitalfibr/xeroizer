@@ -34,6 +34,10 @@ module Xeroizer
     record :BankTransaction
     record :User
 
+    record :BankTransfer
+    record :FromBankAccount
+    record :ToBankAccount
+
     report :AgedPayablesByContact
     report :AgedReceivablesByContact
     report :BalanceSheet
