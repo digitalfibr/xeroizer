@@ -141,7 +141,7 @@ module Xeroizer
         end
 
         def save_records(records, chunk_size = DEFAULT_RECORDS_PER_BATCH_SAVE)
-          errors = []
+          results = []
           return false unless records.all?(&:valid?)
 
           actions = records.group_by {|o| o.new_record? ? create_method : :http_post }
@@ -153,14 +153,14 @@ module Xeroizer
                 if record and record.is_a?(model_class)
                   some_records[i].attributes = record.non_calculated_attributes
                   some_records[i].errors = record.errors
-                  errors[i] = record.errors
                   some_records[i].saved!
+                  results << some_records[i]
                 end
               end
             end
           end
 
-          errors
+          results
         end
 
         def batch_save(chunk_size = DEFAULT_RECORDS_PER_BATCH_SAVE)
