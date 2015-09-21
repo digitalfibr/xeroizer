@@ -152,7 +152,7 @@ module Xeroizer
               response.response_items.each_with_index do |record, i|
                 if record and record.is_a?(model_class)
                   some_records[i].attributes = record.non_calculated_attributes
-                  some_records[i].errors = record.errors
+                  some_records[i].errors = record.errors || []
                   some_records[i].saved!
                   results << some_records[i]
                 end
